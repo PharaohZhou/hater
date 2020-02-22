@@ -1,5 +1,6 @@
 package top.zhoulis.system.controller.router;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import top.zhoulis.system.service.TagService;
  * @date 2019-09-10
  */
 @Controller
+@Api(value = "SystemRouterController", tags = {"后台路由"})
 public class SystemRouterController {
 
     @Autowired

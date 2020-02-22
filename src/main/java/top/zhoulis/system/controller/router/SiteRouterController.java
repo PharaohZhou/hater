@@ -3,6 +3,7 @@ package top.zhoulis.system.controller.router;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ import java.util.Map;
  * @author zhou
  */
 @Controller
+@Api(value = "SystemRouterController", tags = {"前台路由"})
 public class SiteRouterController extends BaseController {
 
     @Autowired
