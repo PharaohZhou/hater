@@ -117,11 +117,12 @@
             },
             success: function(id, url, searchVal, result){
                 console.log(result.data)
-                let ids = []
+                console.log(p.tags)
+                let ids = [];
                 if (p.tags != null && p.tags.length > 0) {
                     p.tags.forEach(t => {
                         ids.push(t.id)
-                    })
+                    });
                     formSelects.value('tags', ids);
                 }
             }
@@ -145,27 +146,29 @@
             form.render('select')
         })
 
-        //文件上传
-        var uploadInst = upload.render({
-            elem: '#upload',
-            url: api.qiniu.upload,
-            done: function(res){
-                if (res.code == 200) {
-                    layer.msg('上传成功');
-                }
-                if (res.code == 500) {
-                    return admin.modal.error(res.msg);
-                }
-                $('#cover').attr('src', res.data.url)
-            }
-        });
+        // //文件上传
+        // var uploadInst = upload.render({
+        //     elem: '#upload',
+        //     url: api.qiniu.upload,
+        //     done: function(res){
+        //         if (res.code == 200) {
+        //             layer.msg('上传成功');
+        //         }
+        //         if (res.code == 500) {
+        //             return admin.modal.error(res.msg);
+        //         }
+        //         $('#cover').attr('src', res.data.url)
+        //     }
+        // });
 
         //监听提交
         form.on('submit(draft)', function(form){
+            let rdm = new Date();
+            rdm.getSeconds();
             let data = form.field;
             data.content = contentMd.getHTML()
             data.contentMd = contentMd.getMarkdown()
-            data.cover = $('#cover')[0].src
+            // data.cover = "http://localhost:8887/site/images/thumbs/" + rdm%18 + ".jpg"
             data.state = "0"
             data.tags = layui.formSelects.value('tags');
             admin.put(api.article.base, JSON.stringify(data), (res) => {
@@ -176,11 +179,13 @@
             return false;
         });
         form.on('submit(release)', function(form){
+            let rdm = new Date();
+            rdm.getSeconds();
             let data = form.field;
             data.content = contentMd.getHTML()
             data.contentMd = contentMd.getMarkdown()
-            data.cover = $('#cover')[0].src
-            data.tags = layui.formSelects.value('tags');
+            // data.cover = "http://localhost:8887/site/images/thumbs/" + rdm%18 + ".jpg"
+             data.tags = layui.formSelects.value('tags');
             data.state = "1"
             admin.put(api.article.base, JSON.stringify(data), (res) => {
                 layer.msg(res.msg)

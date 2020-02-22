@@ -9,9 +9,12 @@ import top.zhoulis.common.controller.BaseController;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.common.utils.R;
 import top.zhoulis.system.entity.SysArticle;
+import top.zhoulis.system.entity.SysTag;
 import top.zhoulis.system.entity.dto.ArchivesWithArticle;
 import top.zhoulis.system.service.ArticleService;
+import top.zhoulis.system.service.ArticleTagService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +25,9 @@ public class ArticleController extends BaseController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ArticleTagService articleTagService;
 
     /**
      * 查询文章总数量
@@ -79,4 +85,23 @@ public class ArticleController extends BaseController {
             throw e;
         }
     }
+
+    /**
+     * 查询指定ArticleId的Tags数据
+     *
+     * @param id
+     * @return
+     */
+//    @GetMapping("/{id}/tags")
+//    public R<List<String>> findTags(@PathVariable Long id) {
+//        List<String> list = new ArrayList<String>();
+//        List<SysTag> tagList = articleTagService.findByArticleId(id);
+//        for (SysTag t : tagList) {
+//            list.add(t.getName());
+//        }
+//        return new R<>(list);
+//    }
+
+
+
 }

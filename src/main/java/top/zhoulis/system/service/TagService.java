@@ -42,7 +42,7 @@ public interface TagService extends IService<SysTag> {
     void update(SysTag tag);
 
     /**
-     * 根据文章id查找关联的分类数据
+     * 根据文章id查找关联的标签数据
      * @param articleId
      * @return
      */

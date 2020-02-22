@@ -26,6 +26,11 @@ public class TagController extends BaseController {
         return new R<>(tagService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public R findById(@PathVariable Long id) {
+        return new R<>(tagService.getById(id));
+    }
+
     @GetMapping("/list")
     public R<Map<String, Object>> list(SysTag sysTag, QueryPage queryPage) {
         return new R<>(super.getData(tagService.list(sysTag, queryPage)));

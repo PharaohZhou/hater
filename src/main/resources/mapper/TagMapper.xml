@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="top.zhoulis.system.mapper.TagMapper">
     <select id="findTagByArticleId" parameterType="long" resultType="SysTag">
-select *
-from tb_article a,tb_tag t,tb_article_tag ta
-where a.id = ta.article_id and t.id = ta.tag_id
-and a.id = #{id}
+        SELECT * FROM tb_tag t, tb_article a, tb_article_tag ta
+        WHERE t.id = ta.tag_id AND a.id = ta.article_id AND a.id = #{id}
     </select>
 </mapper>
