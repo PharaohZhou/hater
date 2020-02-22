@@ -46,10 +46,10 @@
             where: {},
             cellMinWidth: 80,
             cols: [[
-                {field:'id', width:80, title: 'ID', sort: true, fixed: 'left'},
-                {field:'title', title: '标题'},
+                {field:'id', width:60, title: 'ID', sort: true, fixed: 'left'},
+                {field:'title',width:200, title: '标题'},
                 {field:'author', width:100, title: '作者'},
-                {field:'category', width:100, title: '分类'},
+                {field:'category', width:80, title: '分类'},
                 {field:'createTime', width:180, title: '创建时间'},
                 {field:'publishTime', width:180, title: '发布时间'},
                 {field:'state', width:100, title: '状态', templet: function(d) {
@@ -59,7 +59,7 @@
                         return '<div><span class="layui-badge layui-bg-danger">未发布</span></div>'
                     }
                 }},
-                {field:'tags', width:200, title: '标签', templet: function(d) {
+                {field:'tags', width:150, title: '标签', templet: function(d) {
                     if (d.tags != null && d.tags.length > 0) {
                         let html = '';
                         d.tags.forEach(t => {

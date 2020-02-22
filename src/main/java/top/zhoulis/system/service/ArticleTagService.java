@@ -17,4 +17,6 @@ public interface ArticleTagService extends IService<ArticleTag> {
      * @param articleTag
      */
     void add(ArticleTag articleTag);
+
+    void deleteByTagsId(Long id);
 }

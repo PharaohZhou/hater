@@ -11,4 +11,6 @@ public interface ArticleCategoryService extends IService<ArticleCategory> {
     void deleteByArticleId(Long id);
 
     void add(ArticleCategory articleCategory);
+
+    void deleteByCategoryId(Long id);
 }

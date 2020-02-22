@@ -30,6 +30,14 @@ public class ArticleTagServiceImpl extends ServiceImpl<ArticleTagMapper, Article
         }
     }
 
+    @Override
+    @Transactional
+    public void deleteByTagsId(Long id) {
+        LambdaQueryWrapper<ArticleTag> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ArticleTag::getTagId, id);
+        articleTagMapper.delete(queryWrapper);
+    }
+
     private boolean exists(ArticleTag articleTag) {
         LambdaQueryWrapper<ArticleTag> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(ArticleTag::getArticleId, articleTag.getArticleId());

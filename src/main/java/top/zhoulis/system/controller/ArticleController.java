@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.zhoulis.common.annotation.Log;
 import top.zhoulis.common.controller.BaseController;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.common.utils.R;
@@ -44,6 +45,7 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping
+    @Log("新增文章")
     public R save(@RequestBody SysArticle sysArticle) {
         try {
             articleService.add(sysArticle);
@@ -55,6 +57,7 @@ public class ArticleController extends BaseController {
     }
 
     @PutMapping
+    @Log("更新文章")
     public R update(@RequestBody SysArticle sysArticle) {
         try {
             articleService.update(sysArticle);
@@ -66,6 +69,7 @@ public class ArticleController extends BaseController {
     }
 
     @DeleteMapping("/{id}")
+    @Log("删除文章")
     public R delete(@PathVariable Long id) {
         try {
             articleService.delete(id);

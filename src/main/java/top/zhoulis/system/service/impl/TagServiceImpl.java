@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.system.entity.SysTag;
 import top.zhoulis.system.mapper.TagMapper;
+import top.zhoulis.system.service.ArticleTagService;
 import top.zhoulis.system.service.TagService;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, SysTag> implements Ta
 
     @Autowired
     private TagMapper tagMapper;
+
+    @Autowired
+    private ArticleTagService articleTagService;
 
     @Override
     public List<SysTag> findAll() {
@@ -49,6 +53,7 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, SysTag> implements Ta
     public void delete(Long id) {
         tagMapper.deleteById(id);
         //删除与文章关联的该标签的关联信息
+        articleTagService.deleteByTagsId(id);
     }
 
     @Override

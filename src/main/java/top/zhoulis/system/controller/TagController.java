@@ -3,7 +3,9 @@ package top.zhoulis.system.controller;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.zhoulis.common.annotation.Log;
 import top.zhoulis.common.controller.BaseController;
+import top.zhoulis.common.exception.GlobalException;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.common.utils.R;
 import top.zhoulis.system.entity.SysTag;
@@ -30,39 +32,38 @@ public class TagController extends BaseController {
     }
 
     @PostMapping
+    @Log("新增标签")
     public R save(@RequestBody SysTag tag) {
         try {
             tagService.add(tag);
             return new R();
         } catch (Exception e) {
             e.printStackTrace();
-            //throw 抛出异常
-            throw e;
+            throw new GlobalException(e.getMessage());
         }
     }
 
     @PutMapping
+    @Log("更新标签")
     public R update(@RequestBody SysTag tag) {
         try {
             tagService.update(tag);
             return new R();
         } catch (Exception e) {
             e.printStackTrace();
-            //抛出异常 先占位 后续定义异常
-            throw e;
+            throw new GlobalException(e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
+    @Log("删除标签")
     public R delete(@PathVariable Long id) {
         try {
             tagService.delete(id);
             return new R();
         } catch (Exception e) {
             e.printStackTrace();
-
-            //先简单抛出异常
-            throw e;
+            throw new GlobalException(e.getMessage());
         }
 
     }

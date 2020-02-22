@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.system.entity.SysCategory;
 import top.zhoulis.system.mapper.CategoryMapper;
+import top.zhoulis.system.service.ArticleCategoryService;
 import top.zhoulis.system.service.CategoryService;
 
 import java.util.List;
@@ -20,6 +21,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, SysCategory
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Autowired
+    private ArticleCategoryService articleCategoryService;
 
     @Override
     public IPage<SysCategory> list(SysCategory sysCategory, QueryPage queryPage) {
@@ -48,6 +52,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, SysCategory
     @Transactional
     public void delete(Long id) {
         categoryMapper.deleteById(id);
+        articleCategoryService.deleteByCategoryId(id);
     }
 
     @Override

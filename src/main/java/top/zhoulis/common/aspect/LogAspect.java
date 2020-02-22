@@ -51,8 +51,8 @@ public class LogAspect {
             SysLog log = new SysLog();
             log.setIp(ip);
             log.setTime(time);
-            logService.saveLog(proceedingJoinPoint, log);
             log.setUsername(sysUser.getUsername());
+            logService.saveLog(proceedingJoinPoint, log);
         }
         return result;
     }

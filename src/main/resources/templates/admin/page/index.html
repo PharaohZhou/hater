@@ -319,10 +319,15 @@
                 $view.find('#today-ip').text(data.todayIp).end()
                     .find('#article-count').text(data.articleCount).end()
                     .find('#comment-count').text(data.commentCount).end()
-                    .find('#last-login-time').text(data.lastLoginTime ? data.lastLoginTime : '第一次访问系统').end()
+                    .find('#last-login-time').text(data.lastLoginTime ? renderTime(data.lastLoginTime) : '第一次访问系统').end()
                     .find('#welcome-message').html(welcomeMessage).end()
                     .find('#user-avatar').attr('src', data.user.avatar);
             }
         }
     )
+
+    function renderTime(date) {
+        var dateee = new Date(date).toJSON();
+        return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    }
 </script>

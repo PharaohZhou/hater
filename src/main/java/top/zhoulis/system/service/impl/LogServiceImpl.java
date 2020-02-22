@@ -51,7 +51,8 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, SysLog> implements Lo
     }
 
     @Override
-    public void saveLog(ProceedingJoinPoint proceedingJoinPoint, SysLog log) {
+    @Transactional
+    public void saveLog(ProceedingJoinPoint proceedingJoinPoint, SysLog log) throws JsonProcessingException{
         MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
         Method method = signature.getMethod();
         Log annotation = method.getAnnotation(Log.class);
@@ -71,11 +72,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, SysLog> implements Lo
         String[] parameterNames = d.getParameterNames(method);
         if (args != null && parameterNames != null) {
             StringBuilder params = new StringBuilder();
-            try {
-                params = handleParams(params, args, Arrays.asList(parameterNames));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            params = handleParams(params, args, Arrays.asList(parameterNames));
             String str = params.toString();
             if (str.length() > 100) {
                 str = str.substring(0, 80) + "...";

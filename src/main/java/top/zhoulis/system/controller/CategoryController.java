@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.zhoulis.common.annotation.Log;
 import top.zhoulis.common.controller.BaseController;
 import top.zhoulis.common.utils.QueryPage;
 import top.zhoulis.common.utils.R;
@@ -34,6 +35,7 @@ public class CategoryController extends BaseController {
     }
 
     @PostMapping
+    @Log("新增分类")
     public R save(@RequestBody SysCategory category) {
         try {
             categoryService.add(category);
@@ -45,6 +47,7 @@ public class CategoryController extends BaseController {
     }
 
     @PutMapping
+    @Log("更新分类")
     public R update(@RequestBody SysCategory category) {
         try {
             categoryService.update(category);
@@ -56,6 +59,7 @@ public class CategoryController extends BaseController {
     }
 
     @DeleteMapping("/{id}")
+    @Log("删除分类")
     public R delete(@PathVariable Long id) {
         try {
             categoryService.delete(id);

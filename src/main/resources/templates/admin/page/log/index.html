@@ -62,7 +62,7 @@
                 var data = obj.data;
                 if(obj.event === 'del'){
                     layer.confirm('确定删除此记录？', function(index){
-                        admin.delete(api.tag.base + data.id, {}, (res) => {
+                        admin.delete(api.log.base + data.id, {}, (res) => {
                             layer.msg(res.msg)
                             table.reload('log-table', {
                                 page: {curr: 1}

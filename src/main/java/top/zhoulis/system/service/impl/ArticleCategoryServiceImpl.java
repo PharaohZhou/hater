@@ -31,6 +31,14 @@ public class ArticleCategoryServiceImpl extends ServiceImpl<ArticleCategoryMappe
         }
     }
 
+    @Override
+    @Transactional
+    public void deleteByCategoryId(Long id) {
+        LambdaQueryWrapper<ArticleCategory> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ArticleCategory::getArticleId, id);
+        articleCategoryMapper.delete(queryWrapper);
+    }
+
     private boolean exists(ArticleCategory articleCategory) {
         LambdaQueryWrapper<ArticleCategory> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(ArticleCategory::getArticleId, articleCategory.getArticleId());

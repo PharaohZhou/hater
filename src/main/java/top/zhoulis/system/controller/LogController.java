@@ -24,7 +24,6 @@ public class LogController extends BaseController {
         return new R<>(super.getData(logService.list(log, queryPage)));
     }
 
-    @Log("删除系统日志")
     @DeleteMapping("/{id}")
     @RequiresPermissions("log:delete")
     public R delete(@PathVariable Long id) {

@@ -34,6 +34,7 @@ public class CommentController extends BaseController {
     }
 
     @PostMapping
+    @Log("保存评论")
     public R save(@RequestBody SysComment comment, HttpServletRequest request) {
         try {
             String ip = IpUtil.getIpAddr(request);
@@ -64,6 +65,7 @@ public class CommentController extends BaseController {
     }
 
     @DeleteMapping("/{id}")
+    @Log("删除评论")
     public R delete(@PathVariable Long id) {
         try {
             commentService.delete(id);

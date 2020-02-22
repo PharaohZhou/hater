@@ -4,6 +4,7 @@ package top.zhoulis.system.controller;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.zhoulis.common.annotation.Log;
 import top.zhoulis.common.controller.BaseController;
 import top.zhoulis.common.exception.GlobalException;
 import top.zhoulis.common.utils.R;
@@ -54,6 +55,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping
+    @Log("新增用户")
     public R save(@RequestBody SysUser sysUser) {
         try {
             userService.add(sysUser);
@@ -64,6 +66,7 @@ public class UserController extends BaseController {
     }
 
     @PutMapping
+    @Log("更新用户")
     public R update(@RequestBody SysUser sysUser) {
         try {
             sysUser.setId(this.getCurrentUser().getId());
@@ -76,6 +79,7 @@ public class UserController extends BaseController {
     }
 
     @DeleteMapping("/{id}")
+    @Log("删除用户")
     public R delete(@PathVariable Long id) {
         try {
             userService.delete(id);
