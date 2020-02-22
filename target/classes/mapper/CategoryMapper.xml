@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zhoulis.system.mapper.CategoryMapper">
+
+    <!-- 根据文章id查询其关联分类表中的数据 -->
+    <select id="findCategoryByArticleId" parameterType="long" resultType="SysCategory">
+select
+c.name
+from tb_category c,tb_article a,tb_article_category ac
+where a.id = ac.article_id and c.id = ac.category_id
+and a.id = #{id}
+    </select>
+</mapper>
